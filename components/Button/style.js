@@ -12,7 +12,7 @@ const style = StyleSheet.create({
         opacity: 0.5,
     },
     title: {
-        fontFamily: 'Inter',
+        fontFamily: 'Inter_18pt',
         fontSize: scaleFontSize(16),
         fontWeight: '500',
         lineHeight: scaleFontSize(19),
