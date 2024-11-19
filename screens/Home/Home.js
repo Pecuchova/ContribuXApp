@@ -23,8 +23,14 @@ const Home = () => {
         <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
             <Header title={"Azzahri A."} type={1} />
             <Search onSearch={(value) => { console.log(value); }} />
-            <Item uri={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyKX2yD4EofsE0MyHvfDG13uUCrWPzQv0IzP_TTb324s69kagKBJc9VsmmYe_1ZNL-JRM&usqp=CAU"} badgeTitle={"Education"} donationTitle={"Genius Rubik"} price={50} />
-
+            <View style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                paddingHorizontal: horizontalScale(24),
+            }}>
+                <Item uri={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyKX2yD4EofsE0MyHvfDG13uUCrWPzQv0IzP_TTb324s69kagKBJc9VsmmYe_1ZNL-JRM&usqp=CAU"} badgeTitle={"Education"} donationTitle={"Genius Rubik"} price={50} />
+                <Item uri={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyKX2yD4EofsE0MyHvfDG13uUCrWPzQv0IzP_TTb324s69kagKBJc9VsmmYe_1ZNL-JRM&usqp=CAU"} badgeTitle={"Education"} donationTitle={"Genius Rubik"} price={50} />
+            </View>
         </SafeAreaView>
     );
 };
