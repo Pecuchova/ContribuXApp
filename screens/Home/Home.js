@@ -9,6 +9,8 @@ import Badge from "../../components/Badge/Badge";
 import globalStyle from "../../assets/styles/globalStyle";
 import style from "./style";
 import { horizontalScale } from "../../assets/styles/scaling";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -21,6 +23,7 @@ const Home = () => {
             <Tab title={"Highlight"} isInactive={true} />
             {/*</View> */}
             <Badge title={"Environment"} />
+            <FontAwesomeIcon icon={faSearch} />
         </SafeAreaView>
     );
 };
