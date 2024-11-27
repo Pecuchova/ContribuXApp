@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, View } from "react-native";
+import { Pressable, SafeAreaView, View, Text } from "react-native";
 
 import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
@@ -14,23 +14,23 @@ import { horizontalScale } from "../../assets/styles/scaling";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { updateFirstName } from "../../redux/reducers/User";
 
 
 const Home = () => {
+    const user = useSelector(state => state.user);
+    console.log(user);
+
+    const dispatch = useDispatch();
+
     return (
         <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
             <Header title={"Azzahri A."} type={1} />
-            <Search onSearch={(value) => { console.log(value); }} />
-            <View style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                paddingHorizontal: horizontalScale(24),
-            }}>
-                <Item uri={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyKX2yD4EofsE0MyHvfDG13uUCrWPzQv0IzP_TTb324s69kagKBJc9VsmmYe_1ZNL-JRM&usqp=CAU"} badgeTitle={"Education"} donationTitle={"Genius Rubik"} price={50} />
-                <Item uri={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyKX2yD4EofsE0MyHvfDG13uUCrWPzQv0IzP_TTb324s69kagKBJc9VsmmYe_1ZNL-JRM&usqp=CAU"} badgeTitle={"Education"} donationTitle={"Genius Rubik"} price={50} />
-            </View>
+            <Header title={user.firstName + " " + user.lastName} type={2} />
+            <Pressable onPress={() => dispatch(updateFirstName({ firstName: "J" }))}>
+                <Text>Press me to change firstName! </Text>
+            </Pressable>
         </SafeAreaView>
     );
 };
