@@ -1,5 +1,17 @@
 import React from "react";
-import { Pressable, SafeAreaView, View, Text } from "react-native";
+import {
+    SafeAreaView,
+    View,
+    Text,
+    ScrollView,
+    Image,
+    Pressable,
+} from 'react-native';
+
+// Importing the useSelector and useDispatch hooks from the React Redux library
+// The useSelector hook allows us to select and retrieve data from the store
+// The useDispatch hook allows us to dispatch actions to update the store
+import { useDispatch, useSelector } from "react-redux";
 
 import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
@@ -10,13 +22,6 @@ import Item from "../../components/Item/Item";
 
 import globalStyle from "../../assets/styles/globalStyle";
 import style from "./style";
-import { horizontalScale } from "../../assets/styles/scaling";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-
-import { useDispatch, useSelector } from "react-redux";
-import { updateFirstName } from "../../redux/reducers/User";
-
 
 const Home = () => {
     const user = useSelector(state => state.user);
@@ -26,11 +31,33 @@ const Home = () => {
 
     return (
         <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
-            <Header title={"Azzahri A."} type={1} />
-            <Header title={user.firstName + " " + user.lastName} type={2} />
-            <Pressable onPress={() => dispatch(updateFirstName({ firstName: "J" }))}>
-                <Text>Press me to change firstName! </Text>
-            </Pressable>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={style.header}>
+                    <View>
+                        <Text style={style.headerIntroText}>Hello, </Text>
+                        <View style={style.username}>
+                            <Header
+                                title={user.firstName + ' ' + user.lastName[0] + '. 👋'}
+                            />
+                        </View>
+                    </View>
+                    <Image
+                        source={require('../../assets/images/profile_image.png')}
+                        style={style.profileImage}
+                        resizeMode={'contain'}
+                    />
+                </View>
+                <View style={style.searchBox}>
+                    <Search />
+                </View>
+                <Pressable style={style.highlightedImageContainer}>
+                    <Image
+                        style={style.highlightedImage}
+                        source={require('../../assets/images/highlighted_image.png')}
+                        resizeMode={'contain'}
+                    />
+                </Pressable>
+            </ScrollView>
         </SafeAreaView>
     );
 };
