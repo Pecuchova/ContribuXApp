@@ -29,6 +29,9 @@ const Home = () => {
 
     const dispatch = useDispatch();
 
+    const categories = useSelector(state => state.categories);
+    console.log(categories);
+
     return (
         <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
             <ScrollView showsVerticalScrollIndicator={false}>
