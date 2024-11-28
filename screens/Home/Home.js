@@ -135,6 +135,25 @@ const Home = () => {
                         )}
                     />
                 </View>
+                {donationItems.length > 0 && (
+                    <View style={style.donationItemsContainer}>
+                        {donationItems.map(value => (
+                            <Item
+                                onPress={selectedDonationId => { }}
+                                donationItemId={value.donationItemId}
+                                uri={value.image}
+                                donationTitle={value.name}
+                                badgeTitle={
+                                    categories.categories.filter(
+                                        val => val.categoryId === categories.selectedCategoryId,
+                                    )[0].name
+                                }
+                                key={value.donationItemId}
+                                price={parseFloat(value.price)}
+                            />
+                        ))}
+                    </View>
+                )}
             </ScrollView>
         </SafeAreaView>
     );
