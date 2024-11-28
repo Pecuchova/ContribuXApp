@@ -14,7 +14,7 @@ const style = StyleSheet.create({
         justifyContent: 'space-between',
     },
     headerIntroText: {
-        fontFamily: 'Inter',
+        fontFamily: 'Inter_18pt',
         fontSize: scaleFontSize(16),
         lineHeight: scaleFontSize(19),
         fontWeight: '400',
@@ -56,7 +56,7 @@ const style = StyleSheet.create({
         justifyContent: 'space-between',
         flexWrap: 'wrap',
     },
-    singleDonationItem: {
+    singleItem: {
         maxWidth: '49%',
         marginBottom: verticalScale(23),
     },

@@ -15,11 +15,10 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 import Header from "../../components/Header/Header";
-import Button from "../../components/Button/Button";
 import Tab from "../../components/Tab/Tab";
-import Badge from "../../components/Badge/Badge";
 import Search from "../../components/Search/Search";
 import Item from "../../components/Item/Item";
+
 
 import { Routes } from '../../navigation/Routes';
 
@@ -140,25 +139,30 @@ const Home = ({ navigation }) => {
                 </View>
                 {donationItems.length > 0 && (
                     <View style={style.donationItemsContainer}>
-                        {donationItems.map(value => (
-                            <View key={value.donationItemId} style={style.singleDonationItem}>
-                                <Item
-                                    onPress={selectedDonationId => {
-                                        dispatch(updateSelectedDonationId(selectedDonationId));
-                                        navigation.navigate(Routes.SingleItem);
-                                    }}
-                                    donationItemId={value.donationItemId}
-                                    uri={value.image}
-                                    donationTitle={value.name}
-                                    badgeTitle={
-                                        categories.categories.filter(
-                                            val => val.categoryId === categories.selectedCategoryId,
-                                        )[0].name
-                                    }
-                                    price={parseFloat(value.price)}
-                                />
-                            </View>
-                        ))}
+                        {donationItems.map(value => {
+                            const categoryInformation = categories.categories.find(
+                                val => val.categoryId === categories.selectedCategoryId,
+                            );
+                            return (
+                                <View
+                                    key={value.donationItemId}
+                                    style={style.singleItem}>
+                                    <Item
+                                        onPress={selectedDonationId => {
+                                            dispatch(updateSelectedDonationId(selectedDonationId));
+                                            navigation.navigate(Routes.SingleItem, {
+                                                categoryInformation,
+                                            });
+                                        }}
+                                        donationItemId={value.donationItemId}
+                                        uri={value.image}
+                                        donationTitle={value.name}
+                                        badgeTitle={categoryInformation.name}
+                                        price={parseFloat(value.price)}
+                                    />
+                                </View>
+                            );
+                        })}
                     </View>
                 )}
             </ScrollView>
