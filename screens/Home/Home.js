@@ -6,6 +6,7 @@ import {
     ScrollView,
     Image,
     Pressable,
+    FlatList,
 } from 'react-native';
 
 // Importing the useSelector and useDispatch hooks from the React Redux library
@@ -20,6 +21,8 @@ import Badge from "../../components/Badge/Badge";
 import Search from "../../components/Search/Search";
 import Item from "../../components/Item/Item";
 
+import { updateSelectedCategoryId } from '../../redux/reducers/Categories';
+
 import globalStyle from "../../assets/styles/globalStyle";
 import style from "./style";
 
@@ -30,7 +33,7 @@ const Home = () => {
     const dispatch = useDispatch();
 
     const categories = useSelector(state => state.categories);
-    console.log(categories);
+
 
     return (
         <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
@@ -60,6 +63,26 @@ const Home = () => {
                         resizeMode={'contain'}
                     />
                 </Pressable>
+                <View style={style.categoryHeader}>
+                    <Header title={'Select Category'} type={2} />
+                </View>
+                <View style={style.categories}>
+                    <FlatList
+                        horizontal={true}
+                        showsHorizontalScrollIndicator={false}
+                        data={categories.categories}
+                        renderItem={({ item }) => (
+                            <View style={style.categoryItem} key={item.categoryId}>
+                                <Tab
+                                    tabId={item.categoryId}
+                                    onPress={value => dispatch(updateSelectedCategoryId(value))}
+                                    title={item.name}
+                                    isInactive={item.categoryId !== categories.selectedCategoryId}
+                                />
+                            </View>
+                        )}
+                    />
+                </View>
             </ScrollView>
         </SafeAreaView>
     );
