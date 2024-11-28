@@ -21,12 +21,15 @@ import Badge from "../../components/Badge/Badge";
 import Search from "../../components/Search/Search";
 import Item from "../../components/Item/Item";
 
+import { Routes } from '../../navigation/Routes';
+
 import { updateSelectedCategoryId } from '../../redux/reducers/Categories';
+import { updateSelectedDonationId } from '../../redux/reducers/Donations';
 
 import globalStyle from "../../assets/styles/globalStyle";
 import style from "./style";
 
-const Home = () => {
+const Home = ({ navigation }) => {
     const user = useSelector(state => state.user);
     console.log(user);
 
@@ -140,7 +143,10 @@ const Home = () => {
                         {donationItems.map(value => (
                             <View key={value.donationItemId} style={style.singleDonationItem}>
                                 <Item
-                                    onPress={selectedDonationId => { }}
+                                    onPress={selectedDonationId => {
+                                        dispatch(updateSelectedDonationId(selectedDonationId));
+                                        navigation.navigate(Routes.SingleItem);
+                                    }}
                                     donationItemId={value.donationItemId}
                                     uri={value.image}
                                     donationTitle={value.name}
