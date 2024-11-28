@@ -12,12 +12,14 @@ import User from "./reducers/User";
 
 // Importing the Categories reducer from the ./reducers/Categories file
 import Categories from './reducers/Categories';
+import Donations from './reducers/Donations';
 
 
 const rootReducer = combineReducers({
     // Here, we're combining the User reducer and calling it "user"
     user: User,
     categories: Categories,
+    donations: Donations,
 });
 
 // Configuring the redux-persist library to persist the root reducer with AsyncStorage

@@ -32,11 +32,14 @@ const Home = () => {
 
     const dispatch = useDispatch();
     const categories = useSelector(state => state.categories);
+    const donations = useSelector(state => state.donations);
 
     const [categoryPage, setCategoryPage] = useState(1);
     const [categoryList, setCategoryList] = useState([]);
     const [isLoadingCategories, setIsLoadingCategories] = useState(false);
     const categoryPageSize = 4;
+
+    console.log('current donations state', donations);
 
     useEffect(() => {
         setIsLoadingCategories(true);
