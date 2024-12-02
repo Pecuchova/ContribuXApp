@@ -16,9 +16,9 @@ export const User = createSlice({
         logIn: (state, action) => {
             return { ...state, ...{ isLoggedIn: true }, ...action.payload };
         },
-    },
-    resetToInitialState: () => {
-        return initialState;
+        resetToInitialState: () => {
+            return initialState;
+        },
     },
 });
 

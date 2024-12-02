@@ -4,7 +4,6 @@ export const createUser = async (fullName, email, password) => {
     try {
         const user = await auth().createUserWithEmailAndPassword(email, password);
         await user.user.updateProfile({ displayName: fullName });
-
         return user;
     } catch (error) {
         if (error.code === 'auth/email-already-in-use') {
@@ -15,7 +14,6 @@ export const createUser = async (fullName, email, password) => {
         return { error: 'Something went wrong with your request.' };
     }
 };
-
 export const loginUser = async (email, password) => {
     try {
         const response = await auth().signInWithEmailAndPassword(email, password);
@@ -40,4 +38,8 @@ export const loginUser = async (email, password) => {
         }
         return { status: false, error: 'Something went wrong' };
     }
+};
+
+export const logOut = async () => {
+    await auth().signOut();
 };
