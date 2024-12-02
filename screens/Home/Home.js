@@ -25,6 +25,7 @@ import { Routes } from '../../navigation/Routes';
 import { updateSelectedCategoryId } from '../../redux/reducers/Categories';
 import { updateSelectedDonationId } from '../../redux/reducers/Donations';
 
+
 import globalStyle from "../../assets/styles/globalStyle";
 import style from "./style";
 
@@ -32,9 +33,11 @@ const Home = ({ navigation }) => {
     const user = useSelector(state => state.user);
     console.log(user);
 
-    const dispatch = useDispatch();
+
     const categories = useSelector(state => state.categories);
     const donations = useSelector(state => state.donations);
+
+    console.log(user);
 
     const [donationItems, setDonationItems] = useState([]);
     const [categoryPage, setCategoryPage] = useState(1);
@@ -75,9 +78,7 @@ const Home = ({ navigation }) => {
                     <View>
                         <Text style={style.headerIntroText}>Hello, </Text>
                         <View style={style.username}>
-                            <Header
-                                title={user.firstName + ' ' + user.lastName[0] + '. 👋'}
-                            />
+                            <Header title={user.displayName + ' 👋'} />
                         </View>
                     </View>
                     <Image
